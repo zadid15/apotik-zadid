@@ -32,9 +32,9 @@ class SupplierController extends Controller
 
         $simpan = Supplier::create($validate);
         if ($simpan) {
-            return response()->json(['message' => 'Data Berhasil']);
+            return response()->json(['message' => 'Data Berhasil Ditambahkan']);
         } else{
-            return response()->json(['message' => 'Data gagal Disimpan']);
+            return response()->json(['message' => 'Data gagal Ditambahkan']);
         }
     }
 }

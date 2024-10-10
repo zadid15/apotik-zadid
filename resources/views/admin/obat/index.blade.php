@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title mb-2">Data {{ $menu }}</h3>
-                                <a href="{{ route('supplier.create') }}" class="btn btn-primary float-right"><i
+                                <a href="{{ route('obat.create') }}" class="btn btn-primary float-right"><i
                                         class="fas fa-plus"></i>Tambah</a>
                             </div>
                             <div class="card-body">
@@ -36,27 +36,33 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Perusahaan</th>
-                                            <th>Alamat</th>
-                                            <th>Telepon</th>
+                                            <th>Nama Obat</th>
+                                            <th>Expired</th>
+                                            <th>Harga Beli</th>
+                                            <th>Harga Jual</th>
+                                            <th>Stok</th>
+                                            <th>ID Supplier</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($suppliers as $supplier)
+                                        @foreach ($obats as $obat)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $supplier->perusahaan }}</td>
-                                                <td>{{ $supplier->alamat }}</td>
-                                                <td>{{ $supplier->telepon }}</td>
+                                                <td>{{ $obat->nama }}</td>
+                                                <td>{{ $obat->expired }}</td>
+                                                <td>{{ $obat->harga_beli }}</td>
+                                                <td>{{ $obat->harga_jual }}</td>
+                                                <td>{{ $obat->stok }}</td>
+                                                <td>{{ $obat->id_supplier }}</td>
                                                 <td>
-                                                    <form action="{{ route('supplier.destroy', $supplier->id) }}"
+                                                    <form action="{{ route('obat.destroy', $obat->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger"><i
                                                                 class="fas fa-trash"></i></button>
-                                                        <a href="{{ route('supplier.edit', $supplier->id) }}"
+                                                        <a href="{{ route('obat.edit', $obat->id) }}"
                                                             class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                                     </form>
                                                 </td>

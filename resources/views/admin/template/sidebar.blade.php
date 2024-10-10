@@ -65,7 +65,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ route('obat.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-pills"></i>
               <p>
                 Obat

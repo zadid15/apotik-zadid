@@ -28,18 +28,34 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title mb-2">Data {{ $menu }}</h3>
-                                <a href="{{ route('supplier.index') }}" class="btn btn-warning float-right">Kembali</a>
+                                <a href="{{ route('obat.index') }}" class="btn btn-warning float-right">Kembali</a>
                             </div>
                             <div class="card-body">
-                                <form method="post" id="form-supplier">
-                                    <label for="">Perusahaan</label>
-                                    <input type="text" class="form-control mb-3" name="perusahaan" id="perusahaan">
-                                    <label for="">Alamat</label>
-                                    <input type="text" class="form-control mb-3" name="alamat" id="alamat">
-                                    <label for="">Telp</label>
-                                    <input type="text" class="form-control mb-3" name="telepon" id="telepon">
+                                <form method="post" id="form-obat">
+                                    <label for="nama">Nama Obat</label>
+                                    <input type="text" class="form-control mb-3" name="nama" id="nama" required>
+                                
+                                    <label for="expired">Tanggal Kedaluwarsa</label>
+                                    <input type="date" class="form-control mb-3" name="expired" id="expired" required>
+                                
+                                    <label for="harga_beli">Harga Beli</label>
+                                    <input type="number" class="form-control mb-3" name="harga_beli" id="harga_beli" required>
+                                
+                                    <label for="harga_jual">Harga Jual</label>
+                                    <input type="number" class="form-control mb-3" name="harga_jual" id="harga_jual" required>
+                                
+                                    <label for="stok">Stok</label>
+                                    <input type="number" class="form-control mb-3" name="stok" id="stok" required>
+                                
+                                    <label for="id_supplier">Supplier</label>
+                                    <select name="id_supplier" id="id_supplier" class="form-control mb-3" required>
+                                        @foreach ($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}">{{ $supplier->perusahaan }}</option>
+                                        @endforeach
+                                    </select>
+                                
                                     <button type="submit" class="btn btn-primary">Buat !</button>
-                                </form>
+                                </form>                                
                             </div>
                         </div>
                     </div>
@@ -53,21 +69,21 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#form-supplier').submit(function(e) {
+            $('#form-obat').submit(function(e) {
                 e.preventDefault();
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('supplier.store') }}",
+                    url: "{{ route('obat.store') }}",
                     data: $(this).serialize() + "&_token={{ csrf_token() }}",
                     success: function(response) {
                         console.log(response);
                         alert(response
                         .message);
-                        window.location.href = "{{ route('supplier.index') }}";
+                        window.location.href = "{{ route('obat.index') }}";
                     },
                     error: function(response) {
-                        alert(response.message); 
+                        alert(response.message);
                     }
                 });
             });
