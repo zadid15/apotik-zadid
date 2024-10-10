@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,5 @@ Route::post('/login',[UserController::class,'login'])
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])
 ->name('dashboard');
+
+Route::resource('supplier',SupplierController::class);
